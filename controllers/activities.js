@@ -4,8 +4,8 @@ async function getAll(req, res) {
   // TODO CHALLENGE 04: construir el filtro de Mongoose a partir de req.query.type
   const filter = {};
 
-  // TODO CHALLENGE 02: recuperar las actividades con Mongoose
-  const activities = [];
+  // recuperamos todas las activity's del más viejo al mas nuevo
+  const activities = await Activity.find(filter).sort({createdAt: 1});
 
   res.status(200).json(activities);
 }
