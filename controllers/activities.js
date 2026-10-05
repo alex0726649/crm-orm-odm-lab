@@ -1,8 +1,13 @@
 const Activity = require('../models/mongoose/activity');
 
 async function getAll(req, res) {
-  // TODO CHALLENGE 04: construir el filtro de Mongoose a partir de req.query.type
+  // funcion para saber si el usuario quiere filtrar los datos o leerlos todos
+  const type = req.query.type;
   const filter = {};
+  if(type){
+    filter.type=type;
+  }
+
 
   // recuperamos todas las activity's del más viejo al mas nuevo
   const activities = await Activity.find(filter).sort({createdAt: 1});
